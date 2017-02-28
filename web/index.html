@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-
-<!--
-  Copyright (c) 2017, mo. All rights reserved. Use of this source code
-  is governed by a BSD-style license that can be found in the LICENSE file.
--->
-
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="scaffolded-by" content="https://github.com/google/stagehand">
-    <title>dartagnan</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="main.dart" type="application/dart"></script>
-    <script defer src="packages/browser/dart.js"></script>
-</head>
-
-<body>
-
-  <div id="output"></div>
-
-</body>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Entries</title>
+    <script src="packages/web_components/webcomponents-lite.min.js"></script>
+    <script src="packages/web_components/dart_support.js"></script>
+    <link rel="stylesheet" href="packages/entrymvc/app/app.css">
+  </head>
+  <body>
+    <header>
+      <h1>Entries</h1>
+    </header>
+    <pl-entries></pl-entries>
+    <footer id="info">
+      <p>Double-click to edit an item</p>
+    </footer>
+    <script type="application/dart" src="index.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
 </html>

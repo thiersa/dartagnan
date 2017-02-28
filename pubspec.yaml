@@ -1,22 +1,25 @@
-name: 'dartagnan'
-version: 0.0.1
-description: An absolute bare-bones web app.
-#author: mo <email@example.com>
-#homepage: https://www.example.com
-
-environment:
-  sdk: '>=1.0.0 <2.0.0'
-
-#dependencies:
-#  my_dependency: any
-
-dev_dependencies:
-  browser: '>=0.10.0 <0.11.0'
-  dart_to_js_script_rewriter: '^1.0.1'
-  polymer: '>=0.16.0 <0.17.0'
-
+name: entrymvc
+description: EntryMVC built with polymer.dart
+version: 0.15.4
+dependencies:
+  polymer: ^1.0.0-rc.13
+  web_components: ^0.12.0
+  browser: ^0.10.0
 transformers:
-- dart_to_js_script_rewriter
 - polymer:
     entry_points:
     - web/index.html
+    - test/listorder_test.html
+    - test/markdone_test.html
+    - test/mainpage_test.html
+- test/pub_serve:
+    $include: test/**_test{.*,}.dart
+- $dart2js:
+    minify: true
+    commandLineOptions:
+    - --trust-type-annotations
+    - --trust-primitives
+dev_dependencies:
+  test: ^0.12.3
+environment:
+  sdk: ">=1.8.0 <2.0.0"
