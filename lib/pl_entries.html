@@ -4,18 +4,22 @@
     <section id="entryapp">
       <header id="header">
         <input is="pl-input" id="new-entry" placeholder="New entry, please"
-            autofocus on-pl-input-commit="addEntryAction"
-            on-pl-input-cancel="cancelAddEntryAction">
+               autofocus on-pl-input-commit="addEntryAction"
+               on-pl-input-cancel="cancelAddEntryAction">
       </header>
       <section id="main" hidden="{{!anyItems}}">
         <input id="toggle-all" type="checkbox"
                checked="{{checkAllCompleted(completedCount, activeCount)}}"
                on-change="toggleAllCompletedAction">
         <label for="toggle-all">Mark all as complete</label>
-        <ul id="entry-list" on-pl-destroy-item="destroyItemAction">
-          <template id="entry-repeat" is="dom-repeat" items="{{items}}"
-                    filter="itemsFilter" observe="filter completed">
-            <li is="pl-item" item="{{item}}"></li>
+        <ul id="entry-list"
+            on-pl-destroy-item="destroyItemAction">
+          <template id="entry-repeat"
+                    is="dom-repeat"
+                    items="{{items}}"
+                    filter="itemsFilter"
+                    observe="filter completed">
+                   <li is="pl-item"><item="{{item}}"></li>
           </template>
         </ul>
       </section>
