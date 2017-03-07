@@ -20,7 +20,8 @@
                 class="layout horizontal wrap">
     <locker-entry *ngFor="let name of model.items.keys"
                   class="square layout vertical center center-justified"
-                  (click)="entrySelected(name)">
-        {{name}}
+                  (click)="entrySelected(name)"
+                  [content]="name">
+        The name is: {{name}}
     </locker-entry>
 </paper-material>

@@ -1,12 +1,16 @@
-name: entrymvc
-description: EntryMVC built with Angular 2 and Polymer Dart.
-version: 0.1.4
+name: dartagnan
+description: A web app that uses AngularDart and Polymer Components
+version: 0.0.2
+environment:
+  sdk: '>=1.19.0 <2.0.0'
 dependencies:
   angular2: '>=2.2.0 <2.3.0'
+  angular2_components: '>=0.2.2 <0.3.0'
   polymer: ^1.0.0-rc.18
   polymer_elements:
     git: git://github.com/dart-lang/polymer_elements.git
   web_components: ^0.12.0
+
 dev_dependencies:
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
@@ -19,14 +23,4 @@ transformers:
     platform_pipes:
     - 'package:angular2/common.dart#COMMON_PIPES'
     entry_points: web/main.dart
-- $dart2js:
-    $include: '**/*.bootstrap.initialize.dart'
-    minify: true
-    commandLineOptions:
-    - --trust-type-annotations
-    - --trust-primitives
-dev_dependencies:
-  browser: ^0.10.0
-  dart_to_js_script_rewriter: ^1.0.1
-environment:
-  sdk: '>=1.19.0 <2.0.0'
+- dart_to_js_script_rewriter

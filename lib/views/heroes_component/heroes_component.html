@@ -1,0 +1,28 @@
+<h2>My Heroes</h2>
+<div class="layout horizontal wrap">
+
+    <paper-card *ngFor="let hero of heroes" class="heroes"
+                [class.selected]="hero == selectedHero"
+                (click)="onSelect(hero)">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </paper-card>
+</div>
+
+<div *ngIf="selectedHero != null">
+    <paper-card>
+        <h2> {{selectedHero.name | uppercase}} is my hero </h2>
+        <material-button raised (click)="gotoDetail()">View Details</material-button>
+    </paper-card>
+</div>
+
+<material-input #myInput
+                label="Your name"
+                floatingLabel
+                autoFocus>
+</material-input>
+
+<paper-button raised (click)="myDialog.open()">Say Hello</paper-button>
+
+<hello-dialog #myDialog
+              [name]="myInput.inputText">
+</hello-dialog>

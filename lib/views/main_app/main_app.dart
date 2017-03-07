@@ -1,47 +1,39 @@
-import 'package:angular2/angular2.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:polymer_elements/iron_flex_layout/classes/iron_flex_layout.dart';
 import 'package:polymer_elements/iron_icons.dart';
 import 'package:polymer_elements/paper_header_panel.dart';
 import 'package:polymer_elements/paper_toolbar.dart';
 import 'package:polymer_elements/paper_icon_button.dart';
 
-import '../../model/locker.dart';
-import '../locker_view/locker_view.dart';
-import '../message_bar/message_bar.dart';
+import '../../services/hero_service.dart';
+import '../heroes_component/heroes_component.dart';
+import '../dashboard_component/dashboard_component.dart';
+import '../hero_detail_component/hero_detail_component.dart';
 
-@Component(selector: 'main-app',
-    encapsulation: ViewEncapsulation.Native,
+@Component(
+    selector: 'main-app',
     templateUrl: 'main_app.html',
-    directives: const [LockerView, MessageBar]
-)
+    directives: const [ROUTER_DIRECTIVES],
+    providers: const [HeroService, ROUTER_PROVIDERS])
+@RouteConfig(const [
+  const Route(
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: DashboardComponent,
+    useAsDefault: true),
+  const Route(
+      path: '/heroes',
+      name: 'Heroes',
+      component: HeroesComponent),
+  const Route(
+    path: '/detail/:id',
+      name: 'HeroDetail',
+      component: HeroDetailComponent)
+
+])
+
 class MainApp {
-  Locker locker;
-  String message;
-  int boardSize = 450;
-
-  MainApp() {
-    newLocker();
-  }
-
-  void newLocker() {
-    locker = new Locker();
-  }
-
-  void addEntry() {
-    int index = locker.items.length;
-    locker.save(new LockerEntry("Content $index"), "Name $index");
-  }
-
-  void onDel(String name, int storage) {
-    message = "$name is removed from $storage!";
-  }
-
-  void onAdd(String name, int storage) {
-    message = "$name is added at $storage!";
-  }
-
-  void onSel(String name) {
-    message = "$name is selected";
-    print(message);
-  }
+  String title = 'Tour of Heroes';
 }

@@ -1,11 +1,22 @@
 <paper-card>
-  <div class="card-content">
-    Content....
-  </div>
-  <div class="card-actions">
-    <input type="checkbox" class="toggle"
-           id="completed">
-    <button class="destroy" on-click="destroyAction"></button>
-    <paper-input label="Content">
-  </div>
+    <div class="card-content">
+        {{content}} content
+    </div>
+    <div class="card-actions">
+        <form #entryForm="ngForm" class="layout horizontal center center-justified">
+            <paper-input #nameInput type="text" ngDefaultControl
+                         [(ngModel)]="thisEntry"
+                         (keyup.enter)="submit(true)">
+            </paper-input>
+
+            <paper-input #contentInput type="text" ngDefaultControl
+                         [(ngModel)]="thisEntry"
+                         (keyup.enter)="submit(true)">
+            </paper-input>
+
+            <paper-button raised [disabled]="!guessForm.form.valid" (click)="submit()">
+                Submit
+            </paper-button>
+        </form>
+    </div>
 </paper-card>
