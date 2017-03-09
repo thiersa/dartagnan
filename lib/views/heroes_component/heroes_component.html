@@ -1,28 +1,41 @@
 <h2>My Heroes</h2>
 <div class="layout horizontal wrap">
-
     <paper-card *ngFor="let hero of heroes" class="heroes"
                 [class.selected]="hero == selectedHero"
                 (click)="onSelect(hero)">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <div class="card-content">
+            {{hero.name}}
+        </div>
+        <paper-badge label="{{hero.id}}"></paper-badge>
+        <div class="card-actions">
+        </div>
     </paper-card>
 </div>
 
-<div *ngIf="selectedHero != null">
-    <paper-card>
-        <h2> {{selectedHero.name | uppercase}} is my hero </h2>
-        <material-button raised (click)="gotoDetail()">View Details</material-button>
-    </paper-card>
-</div>
+<material-tab-panel>
+  <material-tab label="Hello">
+      <material-input is="ïron-input" #myInput
+                      label="Your name"
+                      floatingLabel
+                      autoFocus>
+      </material-input>
+      <paper-button raised (click)="myDialog.open()">Say Hello</paper-button>
+  </material-tab>
+  <material-tab label="Favorite">
+      <div *ngIf="selectedHero != null">
+          <paper-card>
+              <div class="card-content">
+                  <h2> {{selectedHero.name | uppercase}} is my hero </h2>
+              </div>
+              <paper-badge label="{{selectedHero.id}}"></paper-badge>
+              <div class="card-actions">
+                  <paper-button raised (click)="gotoDetail()">View Details</paper-button>
+              </div>
+          </paper-card>
+      </div>
 
-<material-input #myInput
-                label="Your name"
-                floatingLabel
-                autoFocus>
-</material-input>
+  </material-tab>
+</material-tab-panel>
 
-<paper-button raised (click)="myDialog.open()">Say Hello</paper-button>
 
-<hello-dialog #myDialog
-              [name]="myInput.inputText">
-</hello-dialog>
+<hello-dialog #myDialog [name]="myInput.inputText"></hello-dialog>

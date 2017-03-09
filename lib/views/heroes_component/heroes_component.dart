@@ -8,7 +8,10 @@ import 'package:angular2/router.dart';
 import 'package:angular2_components/angular2_components.dart';
 
 import 'package:polymer_elements/paper_button.dart';
+import 'package:polymer_elements/paper_badge.dart';
 import 'package:polymer_elements/paper_card.dart';
+import 'package:polymer_elements/paper_tabs.dart';
+import 'package:polymer_elements/paper_tab.dart';
 
 import '../hello_dialog/hello_dialog.dart';
 import '../hero_detail_component/hero_detail_component.dart';
@@ -30,14 +33,14 @@ final HeroService _heroService;
 List<Hero> heroes;
 Hero selectedHero;
 
-HeroesComponent(this._heroService,
-    this._router);
+HeroesComponent(this._heroService, this._router);
 
 Future<Null> getHeroes() async {
   heroes = await _heroService.getHeroes();
 }
 
 void ngOnInit() {
+  print('getHeroes()...');
   getHeroes();
 }
 

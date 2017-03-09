@@ -1,27 +1,13 @@
-<style>
-  .square {
-    outline: 1px solid black;
-    cursor: default;
-    box-sizing: border-box;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+<div class="layout horizontal wrap">
+    <paper-card *ngFor="let name of locker.names(); " class="locker"
+                [class.selected]="name == selectedEntry"
+                (click)="onSelect(name)">
+        <div class="card-content">
+            {{name}}: {{locker.storageLocation(name)}}
+        </div>
+        <div class="card-actions">
+        </div>
+        <paper-badge label="{{locker.storageLocation(name)}}"></paper-badge>
+    </paper-card>
 
-  .highlight {
-    background-color: lightblue;
-  }
-
-</style>
-
-<paper-material elevation="3"
-                class="layout horizontal wrap">
-    <locker-entry *ngFor="let name of model.items.keys"
-                  class="square layout vertical center center-justified"
-                  (click)="entrySelected(name)"
-                  [content]="name">
-        The name is: {{name}}
-    </locker-entry>
-</paper-material>
+</div>

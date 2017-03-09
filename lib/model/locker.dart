@@ -7,11 +7,20 @@ class Locker {
     storage = new List<LockerEntry>();
   }
 
-  int save(LockerEntry le, String name) {
+  Locker.fromMap(Map<String, LockerEntry> entries) {
+
+    items = new Map<String,int>();
+    storage = new List<LockerEntry>();
+
+    entries.forEach((name, le) => this.add(name, le));
+  }
+
+  int add(String name, LockerEntry le) {
     int index = storage.length;
     storage.add(le);
     items[name] = index;
     print("$name: $index");
+    print(le.getContent());
     return index;
   }
 
@@ -23,24 +32,37 @@ class Locker {
     return index;
   }
 
+  List<int> storageLocations() {
+    List<int> result = [];
+    for (var i = 0; i < storage.length; i++) {
+      if (storage[i] != null) {
+        result.add(i);
+      }
+    }
+    return result;
+  }
+
+  List<String> names() => this.items.keys;
+
+
   int delete(String name) {
     int index = storageLocation(name);
     if (index >= 0) {
       storage[index] = null;
     }
+    return index;
   }
 
   LockerEntry getEntry(String name) {
     int index = storageLocation(name);
+    print('Locker.getEntry(): $index');
     return index >= 0 ? storage[index] : null;
   }
 
   void clear() {
     storage.clear();
     items.clear();
-
   }
-
 }
 
 class LockerEntry {
@@ -48,5 +70,9 @@ class LockerEntry {
 
   LockerEntry(String content) {
     data = content;
+  }
+
+  String getContent() {
+    return data;
   }
 }

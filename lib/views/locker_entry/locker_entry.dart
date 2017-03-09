@@ -19,6 +19,6 @@ class LockerEntryView {
   @ViewChild('contentForm') ElementRef contentInput;
 
   LockerEntryView() {
-    print("$runtimeType()");
+    print("JOOP! - $runtimeType()");
   }
 }
